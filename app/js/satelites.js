@@ -1,12 +1,12 @@
-function satelite(id, name, coordX, coordY, noradId, sensor){
+function satelite(id, name, coordX, coordY, noradId, sensor, azimuth = 0, elevation = 0){
     this.id = id;
     this.name = name;
     this.coordX = coordX;
     this.coordY = coordY;
     this.noradId = noradId;
     this.sensor = sensor;
-    this.elevation = 0;
-    this.azimuth = 0;
+    this.azimuth = azimuth;
+    this.elevation = elevation;
     
     this.print = () => {
         return `
@@ -37,23 +37,31 @@ async function getSatelites(){
 async function getSatelite(id){
     const data = await (await fetch("https://api.spectator.earth/satellite/"+id)).json();
 
+
+    var azimuth = 0;
+    var elevation = 0;
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition((position)=>{
+            if(sat.coordY != 'não disponível'){
+                let posicao = position.coords;
+                azimuth = posicao.latitude + sat.id;
+                elevation = posicao.longitude + sat.id;
+            }
+        });
+    }else{
+        alert('erro: não foi possível acessar a localização detalhada');
+    }
+
     const sat = new satelite(
         data.id,
         data.properties.name,
         data.geometry ? data.geometry.coordinates[0].toFixed(4) : 'não disponível',
         data.geometry ? data.geometry.coordinates[1].toFixed(4) : 'não disponível',
         data.properties.norad_id,
-        data.sensors ? data.sensors[0].type : 'não disponível'
+        data.sensors ? data.sensors[0].type : 'não disponível',
+        azimuth,
+        elevation
     );
-    
-    if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition((position)=>{
-            let posicao = position.coords;
-            // return posicao;
-        });
-    }else{
-        alert('erro: não foi possível acessar a localização detalhada');
-    }
 
     return sat;
 }
