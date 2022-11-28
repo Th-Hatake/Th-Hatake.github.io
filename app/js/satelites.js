@@ -1,8 +1,8 @@
 function satelite(id, name, coordX, coordY, noradId, sensor){
     this.id = id;
     this.name = name;
-    this.coordX = coordX.toFixed(4);
-    this.coordY = coordY.toFixed(4);
+    this.coordX = coordX;
+    this.coordY = coordY;
     this.noradId = noradId;
     this.sensor = sensor;
     this.elevation = 0;
@@ -26,8 +26,8 @@ async function getSatelites(){
         satelites.push(new satelite(
             x.id,
             x.properties.name,
-            x.geometry ? x.geometry.coordinates[0] : 'não disponível',
-            x.geometry ? x.geometry.coordinates[1] : 'não disponível',
+            x.geometry ? x.geometry.coordinates[0].toFixed(4) : 'não disponível',
+            x.geometry ? x.geometry.coordinates[1].toFixed(4) : 'não disponível',
             x.properties.norad_id,
             x.sensors ? x.sensors[0].type : 'não disponível'
         ))}
@@ -40,8 +40,8 @@ async function getSatelite(id){
     const sat = new satelite(
         data.id,
         data.properties.name,
-        data.geometry ? data.geometry.coordinates[0] : 'não disponível',
-        data.geometry ? data.geometry.coordinates[1] : 'não disponível',
+        data.geometry ? data.geometry.coordinates[0].toFixed(4) : 'não disponível',
+        data.geometry ? data.geometry.coordinates[1].toFixed(4) : 'não disponível',
         data.properties.norad_id,
         data.sensors ? data.sensors[0].type : 'não disponível'
     );
