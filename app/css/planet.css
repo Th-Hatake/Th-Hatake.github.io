@@ -1,31 +1,55 @@
 body {
-    margin: 0;
+  margin: 0;
 }
+
 canvas {
-    width: 50vw;
-    height: 50vh;
+  width: 50vw;
+  height: 50vh;
 }
+
 /* configurações para o layout do planeta que fica girando */
 #container {
-    margin-left: auto;
-    margin-right: auto;
-    height: 400px;
-    width: 400px;
-    position: relative;
-  }
-  #image {
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    left: 0;
-    top: 0;
-  }
-  #text {
-    z-index: 100;
-    position: absolute;
-    color: rgb(255, 4, 4);
-    font-size: 35px;
-    font-weight: bold;
-    left: 194px;
-    top: 170px;
-  }
+  margin-left: auto;
+  margin-right: auto;
+  height: 400px;
+  width: 400px;
+  position: relative;
+}
+
+#image {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  left: 0;
+  top: 0;
+}
+
+#text {
+  width: 120px;
+  height: 120px;
+  z-index: 100;
+  position: absolute;
+  font-weight: bold;
+  left: 150px;
+  top: 150px;
+  transform-origin: center;
+}
+
+#image2 {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  left: 0;
+  top: 0;
+}
+
+#text2 {
+  width: 120px;
+  height: 120px;
+  z-index: 100;
+  position: absolute;
+  font-weight: bold;
+  left: -48px;
+  top: 80px;
+  transform-origin: bottom;
+}

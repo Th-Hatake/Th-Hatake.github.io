@@ -19,7 +19,7 @@ function init() {
     var material = new THREE.MeshPhongMaterial();
 
     THREE.ImageUtils.crossOrigin = '';
-    material.map = THREE.ImageUtils.loadTexture('http://s3-us-west-2.amazonaws.com/s.cdpn.io/1206469/earthmap1k.jpg')
+    material.map = THREE.ImageUtils.loadTexture('./app/img/earthmap1k.jpg')
 
     mesh = new THREE.Mesh(geometry, material);
     mesh.rotation.x -= 0.5;
