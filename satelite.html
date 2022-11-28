@@ -27,9 +27,15 @@
                 <div class="row text-center mt-2">
                     <div class="col"><b>Latitude:</b> <span id="coordX"></span> | <b>Longitude:</b> <span id="coordY"></span></div>
                 </div>
-                <div id="container">
-                    <img id="image" src="/app/img/Rosa_dos_Ventos.png" />
-                    <p id="text">></p>
+                <div class="row">
+                    <div id="container">
+                        <img id="image" src="/app/img/Rosa_dos_Ventos.png" />
+                        <img id="text" src="/app/img/icons8-up-arrow-1002.png"></img>
+                    </div>
+                    <div id="container">
+                        <img id="image2" src="/app/img/angulo.png" />
+                        <img id="text2" src="/app/img/icons8-up-arrow-1002.png"></img>
+                    </div>
                 </div>
                 <button type="button" class="btn btn-primary" onclick="window.location='/'"><i class="fa-solid fa-chevron-left"></i>voltar
                 </button>
@@ -59,11 +65,15 @@
 
 
             const rotated = document.getElementById('text');
-
-            // Rotate element by 90 degrees clockwise
-            console.log(sat.azimuth)
-            // let rotation = 0 + sat.azimuth;
-            // rotated.style.transform = `rotate(${rotation}deg)`;
+            const rotated2 = document.getElementById('text2');
+            setTimeout(
+            () => {
+                if(sat.azimuth !== 0){
+                    rotated.style.transform = `rotate(${sat.azimuth * 1000}deg)`;
+                    rotated2.style.transform = `rotate(${sat.elevation * 100}deg)`;
+                }
+            }            
+            ,2000);
         });
     </script>
 </body>
